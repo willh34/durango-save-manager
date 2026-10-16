@@ -1,0 +1,6 @@
+pywebview>=5.3
+httpx[http2]>=0.27
+ecdsa>=0.19
+Pillow>=10.0
+bottle>=0.12
+keyring>=24.0

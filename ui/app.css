@@ -1,0 +1,1085 @@
+/* WinUI 3 / Fluent Design System 2 Theme */
+:root {
+  --bg-canvas: #181818;
+  --bg-sidebar: #131313;
+  --bg-card: #202020;
+  --bg-card-hover: #272727;
+  --bg-card-active: #1f1f1f;
+  --bg-input: #232323;
+  --bg-input-hover: #2a2a2a;
+  --bg-input-focus: #1c1c1c;
+
+  --stroke-subtle: rgba(255, 255, 255, 0.06);
+  --stroke-default: rgba(255, 255, 255, 0.09);
+  --stroke-flyout: rgba(255, 255, 255, 0.14);
+
+  --accent: #107c10;
+  --accent-hover: #138a13;
+  --accent-active: #0e6d0e;
+  --accent-subtle: rgba(16, 124, 16, 0.18);
+  --accent-text: #ffffff;
+
+  --text-primary: #ffffff;
+  --text-secondary: #d0d0d0;
+  --text-tertiary: #8e8e8e;
+  --text-disabled: #5a5a5a;
+
+  --badge-xbox-one: #0078d4;
+  --badge-xbox-series: #107c10;
+
+  --font-family: "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, "Segoe UI Emoji", system-ui, sans-serif;
+  --radius-card: 8px;
+  --radius-control: 5px;
+  --radius-pill: 20px;
+
+  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.28), 0 0 1px rgba(0, 0, 0, 0.4);
+  --shadow-flyout: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 1px rgba(0, 0, 0, 0.6);
+
+  /* Indeterminate loading bar */
+  .indeterminate-bar {
+    position: relative;
+    width: 200px;
+    height: 3px;
+    margin: 0 auto;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+  }
+
+  .indeterminate-bar::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 40%;
+    border-radius: 2px;
+    background: var(--accent);
+    animation: indeterminateSlide 1.2s ease-in-out infinite;
+  }
+
+  @keyframes indeterminateSlide {
+    0% {
+      transform: translateX(-100%);
+    }
+
+    100% {
+      transform: translateX(250%);
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  body {
+    font-family: var(--font-family);
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* App Layout */
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .header-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 32px;
+  }
+
+  /* User Avatar Button (Next to Library title) */
+  .user-avatar-btn {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.15s ease, filter 0.15s ease;
+    user-select: none;
+  }
+
+  .user-avatar-btn:hover {
+    transform: scale(1.06);
+    filter: brightness(1.2);
+  }
+
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #252525;
+    border: 1px solid var(--stroke-flyout);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    overflow: hidden;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  .user-avatar img,
+  .user-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .fluent-svg {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .fluent-btn-icon {
+    display: inline-block;
+    vertical-align: -3px;
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+
+  /* WinUI 3 Context Menu Flyout */
+  .winui-menu-flyout {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 200px;
+    background: #2c2c2c;
+    background: rgba(44, 44, 44, 0.96);
+    backdrop-filter: blur(30px) saturate(125%);
+    -webkit-backdrop-filter: blur(30px) saturate(125%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px !important;
+    padding: 4px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    transform-origin: top left;
+    animation: winuiFlyoutEnter 0.15s cubic-bezier(0.1, 0.9, 0.2, 1);
+  }
+
+  @keyframes winuiFlyoutEnter {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-4px);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .winui-menu-header {
+    padding: 8px 12px 6px 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .winui-menu-header-gamertag {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+  }
+
+  .winui-menu-header-avatar {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+  }
+
+  .winui-menu-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 4px 6px;
+  }
+
+  .winui-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 32px;
+    padding: 0 12px;
+    background: transparent;
+    border: none;
+    border-radius: 5px !important;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.1s ease, color 0.1s ease;
+    user-select: none;
+    box-sizing: border-box;
+  }
+
+  .winui-menu-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .winui-menu-item:active {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .winui-menu-item.winui-menu-item-danger {
+    color: #ff7676;
+  }
+
+  .winui-menu-item.winui-menu-item-danger:hover {
+    background: rgba(232, 17, 35, 0.18);
+    color: #ff9999;
+  }
+
+  .winui-menu-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+
+  .winui-menu-item:hover .winui-menu-icon {
+    opacity: 1;
+  }
+
+  /* Main Content Area */
+  .main-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg-canvas);
+  }
+
+  /* Content Header / CommandBar - Solid background for 60/120fps scrolling without backdrop-filter lag */
+  .content-header {
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--stroke-subtle);
+    background: var(--bg-canvas);
+    position: relative;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .page-title {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    line-height: 1;
+    height: 32px;
+    margin: 0;
+    padding: 0 0 4px 0;
+    /* optical centering: lifts text ~2px to line up with the avatar */
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .command-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+  }
+
+  /* WinUI Progress Bar across the divider */
+  .header-progress-bar {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2.5px;
+    background: transparent;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .header-progress-bar.active {
+    opacity: 1;
+  }
+
+  .header-progress-indicator {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    box-shadow: 0 0 10px rgba(16, 124, 16, 0.75);
+    border-radius: 0 2px 2px 0;
+    transition: width 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
+  }
+
+  /* Fluent WinUI 3 AutoSuggest / Search Bar */
+  .fluent-search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-control);
+    padding: 0 8px 0 10px;
+    width: 280px;
+    height: 32px;
+    box-sizing: border-box;
+    transition: all 0.15s ease;
+    position: relative;
+  }
+
+  .fluent-search-bar:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+
+  .fluent-search-bar:focus-within {
+    background: var(--bg-card);
+    border-color: rgba(255, 255, 255, 0.15);
+    border-bottom: 2px solid var(--accent);
+    box-shadow: 0 0 0 1px rgba(16, 124, 16, 0.25);
+  }
+
+  .fluent-search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    margin-right: 8px;
+    flex-shrink: 0;
+    transition: color 0.15s ease;
+  }
+
+  .fluent-search-bar:focus-within .fluent-search-icon {
+    color: var(--text-primary);
+  }
+
+  .fluent-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 12.5px;
+    line-height: 30px;
+    min-width: 0;
+  }
+
+  .fluent-search-input::placeholder {
+    color: var(--text-tertiary);
+  }
+
+  .fluent-search-clear {
+    background: transparent;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    padding: 0;
+    margin-left: 4px;
+    flex-shrink: 0;
+    transition: all 0.12s ease;
+  }
+
+  .fluent-search-clear:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+  }
+
+  /* WinUI Controls */
+  .win-input {
+    background: var(--bg-input);
+    border: 1px solid var(--stroke-default);
+    border-bottom: 2px solid var(--stroke-default);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: var(--radius-control);
+    font-size: 12px;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.15s ease;
+  }
+
+  .win-input:hover {
+    background: var(--bg-input-hover);
+    border-color: var(--stroke-flyout);
+  }
+
+  .win-input:focus {
+    background: var(--bg-input-focus);
+    border-bottom-color: var(--accent);
+  }
+
+  .win-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--stroke-default);
+    color: var(--text-primary);
+    padding: 6px 14px;
+    border-radius: var(--radius-control);
+    font-size: 12px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.12s ease;
+  }
+
+  .win-btn:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: var(--stroke-flyout);
+  }
+
+  .win-btn:active {
+    background: rgba(255, 255, 255, 0.03);
+    transform: scale(0.99);
+  }
+
+  .win-btn-accent {
+    background: var(--accent);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--accent-text);
+    font-weight: 600;
+  }
+
+  .win-btn-accent:hover {
+    background: var(--accent-hover);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .win-btn-accent:active {
+    background: var(--accent-active);
+  }
+
+  .win-btn:disabled,
+  .win-btn-accent:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Page Containers */
+  .page-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px;
+    display: none;
+  }
+
+  .page-container.active {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Empty / Login State Card */
+  .empty-state-card {
+    margin: auto;
+    max-width: 500px;
+    text-align: center;
+    background: var(--bg-card);
+    border: 1px solid var(--stroke-subtle);
+    border-radius: var(--radius-card);
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .empty-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--accent-subtle);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .empty-title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .empty-desc {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+  }
+
+  /* Game Poster Grid - Smooth Virtualized Performance */
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 16px;
+    padding: 4px 2px;
+  }
+
+  .game-poster-card {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    cursor: pointer;
+    background: #1e1e1e;
+    border: 1px solid var(--stroke-default);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .game-poster-card:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+    border-color: var(--accent);
+  }
+
+  .game-poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    background: #181818;
+    animation: posterFadeIn 0.22s cubic-bezier(0.1, 0.9, 0.2, 1);
+  }
+
+  @keyframes posterFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* For square, wide, or banner images so no part is cropped or cut off */
+  .game-poster-img.fit-contain {
+    object-fit: contain;
+    padding: 8px;
+  }
+
+  .game-poster-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #1e1e1e;
+    color: var(--text-tertiary);
+    padding: 10px;
+    text-align: center;
+  }
+
+  /* Hover overlay showing game name */
+  .game-poster-overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.65) 60%, transparent 100%);
+    padding: 24px 8px 8px 8px;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.16s ease, transform 0.16s ease;
+    pointer-events: none;
+    word-break: break-word;
+  }
+
+  .game-poster-card:hover .game-poster-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+  /* ==========================================================================
+   WinUI 3 / Fluent 2 Design System: ContentDialog & Popups
+   ========================================================================== */
+
+  /* Fullscreen Dialog Scrim / Smoke */
+  .winui-dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+  }
+
+  .winui-dialog-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* WinUI 3 ContentDialog Window Surface */
+  .winui-dialog {
+    width: 90%;
+    max-width: 480px;
+    background: #2b2b2b;
+    background: rgba(43, 43, 43, 0.96);
+    backdrop-filter: blur(30px) saturate(125%);
+    -webkit-backdrop-filter: blur(30px) saturate(125%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px !important;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.65), 0 4px 12px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.96) translateY(8px);
+    transition: transform 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+  }
+
+  .winui-dialog-overlay.active .winui-dialog {
+    transform: scale(1) translateY(0);
+  }
+
+  .winui-dialog-confirm {
+    max-width: 420px;
+  }
+
+  /* Dialog Header */
+  .winui-dialog-header {
+    padding: 18px 24px 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .winui-dialog-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .winui-dialog-title-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .winui-dialog-confirm .winui-dialog-title-icon {
+    color: #ff6b6b;
+    background: rgba(232, 17, 35, 0.12);
+    border-color: rgba(232, 17, 35, 0.2);
+  }
+
+  .winui-dialog-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.2px;
+    margin: 0;
+  }
+
+  .winui-dialog-close-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background: transparent;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.1s ease, color 0.1s ease;
+  }
+
+  .winui-dialog-close-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+  }
+
+  /* Dialog Body */
+  .winui-dialog-body {
+    padding: 4px 24px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  /* Game Preview Card inside Download Dialog */
+  .winui-dialog-game-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 6px;
+  }
+
+  .winui-dialog-game-thumb {
+    width: 48px;
+    height: 64px;
+    border-radius: 4px;
+    background: #1e1e1e;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .winui-dialog-game-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .winui-dialog-game-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .winui-dialog-game-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .winui-dialog-game-tags {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .winui-badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 4px;
+    line-height: 1.2;
+  }
+
+  .winui-badge-platform {
+    background: rgba(16, 124, 16, 0.2);
+    color: #5ed65e;
+    border: 1px solid rgba(16, 124, 16, 0.35);
+  }
+
+  .winui-badge-mono {
+    font-family: Consolas, monospace;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-tertiary);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    user-select: text;
+    word-break: break-all;
+  }
+
+  /* Form Controls */
+  .winui-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .winui-form-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .winui-input-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .winui-input {
+    flex: 1;
+    height: 32px;
+    padding: 0 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 12.5px;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .winui-input:focus {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: var(--accent);
+    border-bottom-width: 2px;
+  }
+
+  /* WinUI Checkbox */
+  .winui-checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.1s ease;
+  }
+
+  .winui-checkbox-container:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .winui-checkbox {
+    margin-top: 2px;
+    accent-color: var(--accent);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+
+  .winui-checkbox-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .winui-checkbox-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .winui-checkbox-desc {
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+    line-height: 1.35;
+  }
+
+  .winui-checkbox-desc code {
+    font-family: Consolas, monospace;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+
+  /* Progress Tracker */
+  .winui-dialog-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .winui-progress-track {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .winui-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.25s cubic-bezier(0.1, 0.9, 0.2, 1);
+    box-shadow: 0 0 8px rgba(16, 124, 16, 0.75);
+  }
+
+  .winui-progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    color: var(--text-secondary);
+  }
+
+  /* Dialog Footer */
+  .winui-dialog-footer {
+    padding: 14px 24px;
+    background: rgba(30, 30, 30, 0.75);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  /* WinUI Standard Buttons */
+  .winui-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 32px;
+    padding: 0 16px;
+    font-family: var(--font-family);
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    transition: background 0.1s ease, filter 0.1s ease, transform 0.08s ease;
+    box-sizing: border-box;
+  }
+
+  .winui-btn:active {
+    transform: scale(0.98);
+  }
+
+  .winui-btn-secondary {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+  }
+
+  .winui-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .winui-btn-primary {
+    background: var(--accent);
+    border-color: rgba(255, 255, 255, 0.18);
+    border-bottom-color: rgba(0, 0, 0, 0.35);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  }
+
+  .winui-btn-primary:hover {
+    background: var(--accent-hover);
+  }
+
+  .winui-btn-danger {
+    background: #c42b1c;
+    border-color: rgba(255, 255, 255, 0.18);
+    border-bottom-color: rgba(0, 0, 0, 0.35);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(196, 43, 28, 0.3);
+  }
+
+  .winui-btn-danger:hover {
+    background: #d13425;
+  }
+
+  .winui-confirm-message {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .winui-confirm-message strong {
+    color: var(--text-primary);
+  }
+
+  /* Settings Form Card */
+  .settings-card {
+    background: var(--bg-card);
+    border: 1px solid var(--stroke-subtle);
+    border-radius: var(--radius-card);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 600px;
+  }
+
+  .settings-section-title {
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--stroke-subtle);
+    padding-bottom: 8px;
+  }

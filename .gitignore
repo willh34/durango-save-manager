@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Sensitive user credentials & session tokens
+tokens.json
+*.token
+*.auth
+
+# Local disk caches & downloaded media
+games_cache.json
+profile_cache.json
+gamerpic.jpg
+icons/
+scratch/
+test_icons/
+test_bench/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+
+# Logs
+*.log
+
+# IDE & Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
