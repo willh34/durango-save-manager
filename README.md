@@ -18,6 +18,5 @@ python app.py
 ```
 
 ## Notes
-- The pr
-ject is not supported by Xbox, use at your own risk.- This project is not affiliated with or endorsed by Microsoft or Xbox.
-- Thanks to xbox-webapi-python and Xodus for rcode references.
+- The project is not affiliated with Microsoft or Xbox and may be against TOS. Use at your own risk.
+- Thanks to xbox-webapi-python and Xodus for code references.
